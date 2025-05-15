@@ -1,0 +1,71 @@
+// NOTA: colocar no pseuco e testar
+
+///////////////////////////////////////////////////////////////////////////
+
+// EX1.1
+
+// Sender
+Sender0 := accept.send0!.Loop0
+Loop0 := rcv_ack0?.Sender1 + send0!.Loop0 + rcv_ack1?.Loop0
+
+Sender1 := accept.send1!.Loop1
+Loop1 := rcv_ack1?.Sender0 + send1!.Loop1 + rcv_ack0?.Loop1
+
+// Receiver
+Receiver0 := receive0?.deliver.snd_ack0!.AckLoop0
+AckLoop0 := snd_ack0!.AckLoop0 + Receiver1 + receive0?.AckLoop0
+
+Receiver1 := receive1?.deliver.snd_ack1!.AckLoop1
+AckLoop1 := snd_ack1!.AckLoop1 + Receiver0 + receive1?.AckLoop1
+
+/// manda 2 vezes ou nehuma ou o normal
+Trans := Send0 + Send1
+Send0 := send0?.(receive0!.Trans + Trans + receive0!.receive0!.Trans)
+Send1 := send1?.(receive1!.Trans + Trans + receive1!.receive1!.Trans)
+
+/// manda 2 vezes ou nehuma ou o normal
+Ack := Ack0 + Ack1
+Ack0 := snd_ack0?.(rcv_ack0!.Ack + Ack + rcv_ack0!.rcv_ack0!.Ack)
+Ack1 := snd_ack1?.(rcv_ack1!.Ack + Ack + rcv_ack1!.rcv_ack1!.Ack)
+
+(Sender0 | Trans | Receiver0 | Ack ) \ {*, accept, deliver}
+
+/////////////////////////////////////////////////////////////////////////////
+
+// EX1.2
+
+// NOTA: em principio o spec pedido e o Spec2
+
+Spec := accept.Loop_s0
+
+Loop_s0 := send0!.Loop_s0 + send0!.receive0!.deliver.Loop_ack0
+Loop_ack0 := snd_ack0!.Loop_ack0 + snd_ack0!.rcv_ack0!.accept.Loop_s1
+
+Loop_s1 := send1!.Loop_s1 + send1!.receive1!.deliver.Loop_ack1
+Loop_ack1 := snd_ack1!.Loop_ack1 + snd_ack1!.rcv_ack1!.accept.Loop_s0
+
+
+Spec2 := accept.deliver.Spec2
+//Spec
+Spec2
+
+/////////////////////////////////////////////////////////////////////////////
+
+// NOTA: neste ainda tenho de ver melhor.... e falar com prof Nelma
+
+// EX1.3
+
+// VERIFICAR !!!
+
+Sender[m, b] := accept.send!(m).SenderLoop[m,b]
+SenderLoop[m, b] := rcv_ack?(b).Sender[m+1, 1-b] + send!(m).SenderLoop[m,b]
+
+Receiver[m, b] := receive?(m).deliver.snd_ack!(b).ReceiverLoop[m ,b]
+ReceiverLoop[m, b] := snd_ack!(b).ReceiverLoop[m , b] + ReceiverLoop[m+1, 1-b]
+
+Trans := send?x.receive!x.Trans
+Ack := snd_ack?x.rcv_ack!x.Ack
+
+(Sender[0,0] | Trans | Receiver[0,0] | Ack) \ {*, accept, deliver}
+
+/////////////////////////////////////////////////////////////////////////////
