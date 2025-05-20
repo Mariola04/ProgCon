@@ -1,6 +1,6 @@
 // NOTA: colocar no pseuco e testar
 
-///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // EX1.1
 
@@ -30,7 +30,7 @@ Ack1 := snd_ack1?.(rcv_ack1!.Ack + Ack + rcv_ack1!.rcv_ack1!.Ack)
 
 (Sender0 | Trans | Receiver0 | Ack ) \ {*, accept, deliver}
 
-/////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // EX1.2
 
@@ -44,12 +44,14 @@ Loop_ack0 := snd_ack0!.Loop_ack0 + snd_ack0!.rcv_ack0!.accept.Loop_s1
 Loop_s1 := send1!.Loop_s1 + send1!.receive1!.deliver.Loop_ack1
 Loop_ack1 := snd_ack1!.Loop_ack1 + snd_ack1!.rcv_ack1!.accept.Loop_s0
 
+//////////////////////////////////////////////////////////////////////
 
 Spec2 := accept.deliver.Spec2
+
 //Spec
 Spec2
 
-/////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // NOTA: neste ainda tenho de ver melhor.... e falar com prof Nelma
 
@@ -61,11 +63,26 @@ Sender[m, b] := accept.send!(m).SenderLoop[m,b]
 SenderLoop[m, b] := rcv_ack?(b).Sender[m+1, 1-b] + send!(m).SenderLoop[m,b]
 
 Receiver[m, b] := receive?(m).deliver.snd_ack!(b).ReceiverLoop[m ,b]
-ReceiverLoop[m, b] := snd_ack!(b).ReceiverLoop[m , b] + ReceiverLoop[m+1, 1-b]
+ReceiverLoop[m, b] := snd_ack!(b).ReceiverLoop[m , b] + Receiver[m+1, 1-b]
 
 Trans := send?x.receive!x.Trans
 Ack := snd_ack?x.rcv_ack!x.Ack
 
-(Sender[0,0] | Trans | Receiver[0,0] | Ack) \ {*, accept, deliver}
+//(accept?x:0..9.Sender[x, 0] | Trans ) \ {*, accept, deliver}
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+// Acho que este segundo vai mais em conta com as aulas, n sei é se devo implementar com as condições todas....
+
+S[b] := when (b == 0) message?m.accept.send!m.SL[b, m] + when (b == 1) message?m.accept.send!(m+1).SL[b, m]
+SL[b, m] := rcv_ack?b.S[1-b] //+ send!m.SL[b]
+
+R[b] := receive?m.deliver.snd_ack!(b).RL[m, b] //+ when (b == 1) receive?(m-1).deliver.snd_ack!(b).RL[m, b]
+RL[m, b] := R[1-b] //snd_ack!(b).RL[m , b] + R[1-b]
+
+//(Sender[0,0] | Trans | Receiver[0,0] | Ack) \ {*, accept, deliver}
+
+(message!0.message!1.0 | S[0] | Trans | R[0] | Ack) \ {*, deliver, accept}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
