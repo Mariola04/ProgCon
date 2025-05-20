@@ -2,27 +2,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
 [0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 8 products, 4 sources, 12 libraries[0m
 [0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/cp/serverPr/ServerState.scala, ${BASE}/src/main/scala/cp/serverPr/Server.scala, ${BASE}/src/main/scala/cp/serverPr/Main.scala, ${BASE}/src/main/scala/cp/serverPr/Routes.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/cp/serverPr/Routes.scala, ${BASE}/src/main/scala/cp/serverPr/ServerState.scala), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/cp/serverPr/ServerState.scala), unmodified = ...),Set(),Set(),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/cp/serverPr/Routes.scala, ${BASE}/src/main/scala/cp/serverPr/ServerState.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/cp/serverPr/ServerState.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(cp.serverPr.Routes, cp.serverPr.ServerState)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(cp.serverPr.ServerState)[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(cp.serverPr.Routes, cp.serverPr.ServerState)[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/cp/serverPr/Routes.scala, ${BASE}/src/main/scala/cp/serverPr/ServerState.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: cp.serverPr.Routes, cp.serverPr.ServerState[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(cp.serverPr.ServerState)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/cp/serverPr/ServerState.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: cp.serverPr.ServerState[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/mario/Desktop/ProgCon/server/target/scala-2.12/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/mario/Desktop/ProgCon/server/target/scala-2.12/classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.12:1.10.7:compile for Scala 2.12.18[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 4786637b for Scala compiler version 2.12.18[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 70ace980 for Scala compiler version 2.12.18[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-encoding[0m
 [0m[[0m[0mdebug[0m] [0m[0m	utf8[0m
@@ -71,14 +71,15 @@
 [0m[[0m[0mdebug[0m] [0m[0m	/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18.jar[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
 [0m[[0m[0mdebug[0m] [0m[0m	/home/mario/Desktop/ProgCon/server/target/scala-2.12/classes:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-ember-server_2.12/0.23.30/http4s-ember-server_2.12-0.23.30.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-dsl_2.12/0.23.30/http4s-dsl_2.12-0.23.30.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/cats-effect_2.12/3.5.4/cats-effect_2.12-3.5.4.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-blaze-server_2.12/0.23.9/http4s-blaze-server_2.12-0.23.9.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.4.11/logback-classic-1.4.11.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-ember-core_2.12/0.23.30/http4s-ember-core_2.12-0.23.30.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-server_2.12/0.23.30/http4s-server_2.12-0.23.30.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/log4cats-slf4j_2.12/2.7.0/log4cats-slf4j_2.12-2.7.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-core_2.12/0.23.30/http4s-core_2.12-0.23.30.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/cats-effect-kernel_2.12/3.5.7/cats-effect-kernel_2.12-3.5.7.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/cats-effect-std_2.12/3.5.7/cats-effect-std_2.12-3.5.7.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-blaze-core_2.12/0.23.9/http4s-blaze-core_2.12-0.23.9.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/qos/logback/logback-core/1.4.11/logback-core-1.4.11.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/log4cats-core_2.12/2.7.0/log4cats-core_2.12-2.7.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/twitter/hpack/1.0.2/hpack-1.0.2.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/case-insensitive_2.12/1.4.2/case-insensitive_2.12-1.4.2.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/cats-core_2.12/2.11.0/cats-core_2.12-2.11.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/cats-parse_2.12/1.0.0/cats-parse_2.12-1.0.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/http4s-crypto_2.12/0.2.4/http4s-crypto_2.12-0.2.4.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/co/fs2/fs2-core_2.12/3.11.0/fs2-core_2.12-3.11.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/co/fs2/fs2-io_2.12/3.11.0/fs2-io_2.12-3.11.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/comcast/ip4s-core_2.12/3.6.0/ip4s-core_2.12-3.6.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/literally_2.12/1.1.0/literally_2.12-1.1.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scodec/scodec-bits_2.12/1.1.38/scodec-bits_2.12-1.1.38.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/vault_2.12/3.6.0/vault_2.12-3.6.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/log4s/log4s_2.12/1.10.0/log4s_2.12-1.10.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/blaze-http_2.12/0.15.3/blaze-http_2.12-0.15.3.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/cats-kernel_2.12/2.11.0/cats-kernel_2.12-2.11.0.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.18/scala-reflect-2.12.18.jar:/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/http4s/blaze-core_2.12/0.15.3/blaze-core_2.12-0.15.3.jar[0m
-[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 2.957156743 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 2.080447076 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
 [0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mFinal step, transitive dependencies:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: cp.serverPr.Routes, cp.serverPr.ServerState[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: cp.serverPr.ServerState[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncluding cp.serverPr.Routes by cp.serverPr.ServerState[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncluding cp.serverPr.Server by cp.serverPr.Routes[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncluding cp.serverPr.Main by cp.serverPr.Server[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated macros due to upstream dependencies change: Set()[0m

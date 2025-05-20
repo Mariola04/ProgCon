@@ -1,27 +1,31 @@
 package cp.serverPr
 
-import java.util.concurrent.Semaphore
-import scala.sys.process._
 import java.util.concurrent.atomic.AtomicInteger
+import scala.sys.process._
 
 class ServerState(maxConcurrent: Int) {
-  private val semaphore = new Semaphore(maxConcurrent)
+  // Lock-free shared state using AtomicInteger
+  private val concurrent = new AtomicInteger(0)
   private val queued = new AtomicInteger(0)
   private val completed = new AtomicInteger(0)
+  private val counter = new AtomicInteger(0)
 
-  @volatile var counter: Int = 0
-
-  private def nextId(): Int = this.synchronized {
-    counter += 1
-    counter
-  }
-
+  /** Execute the command and return its result. */
   def runProcess(cmd: String, userIp: String): String = {
-    queued.incrementAndGet()
-    semaphore.acquire()
-    queued.decrementAndGet()
+    // Try to acquire a slot without blocking (is this lock free?)
+    var acquired = false
+    while (!acquired) {
+      val current = concurrent.get()
+      if (current < maxConcurrent) {
+        acquired = concurrent.compareAndSet(current, current + 1)
+      } else {
+        queued.incrementAndGet()
+        Thread.sleep(10)
+        queued.decrementAndGet()
+      }
+    }
 
-    val id = nextId()
+    val id = counter.incrementAndGet()
     try {
       val output = new StringBuilder
       val logger = ProcessLogger(line => { output.append(line + "\n"); () })
@@ -31,15 +35,13 @@ class ServerState(maxConcurrent: Int) {
     } catch {
       case e: Exception => s"[$id] Error running '$cmd': ${e.getMessage}"
     } finally {
-      semaphore.release()
+      concurrent.decrementAndGet(); ()
     }
   }
 
-
-//TODO: IMPLEMENTAR COUNTER DE DEQUEUE (DEBUG!!!) 
   def toHtml: String =
     s"""
-      |<p><strong>counter:</strong> $counter</p>
+      |<p><strong>counter:</strong> ${counter.get()}</p>
       |<p><strong>queued:</strong> ${queued.get()}</p>
       |<p><strong>completed:</strong> ${completed.get()}</p>
       |""".stripMargin

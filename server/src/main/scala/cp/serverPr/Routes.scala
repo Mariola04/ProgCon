@@ -36,7 +36,7 @@ object Routes {
             Ok(result).map(addCORSHeaders)
 
           case None =>
-            BadRequest("⚠️ Command not provided. Use /run-process?cmd=<your_command>")
+            BadRequest("Command not provided. Use /run-process?cmd=<your_command>")
               .map(addCORSHeaders)
         }
     }
