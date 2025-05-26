@@ -38,6 +38,7 @@ class Trans(receiver: ActorRef, sender: ActorRef, correct: Boolean, failiure: Bo
   }
 }
 
+
 //  AckChannel
 class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging(context.system, this)
@@ -127,7 +128,7 @@ object ABPApp extends App {
   lazy val system = ActorSystem("ABPSystem")
 
   val correct = false // true para tudo certo, ex2 pede isso
-  val failiure= false // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
+  val failiure= true // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
   val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
 
   var senders: ActorRef = null

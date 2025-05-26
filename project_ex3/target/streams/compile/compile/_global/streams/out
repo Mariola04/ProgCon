@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/project_ex3/ABPApp.scala:136:76: not found: value failiure[0m
+[0m[[0m[31merror[0m] [0m[0m  val receiver = system.actorOf(Props(new Receiver(() => senders, correct, failiure)), "receiver")[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/project_ex3/ABPApp.scala:138:64: not found: value failiure[0m
+[0m[[0m[31merror[0m] [0m[0m  senders = system.actorOf(Props(new Sender(receiver, correct, failiure, messages)), "sender")[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

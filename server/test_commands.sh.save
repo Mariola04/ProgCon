@@ -1,0 +1,28 @@
+#!/bin/bash
+
+COMMANDS=(
+  "sleep 2"
+  "sleep 4"
+  "sleep 6"
+  "echo a"
+  "echo b"
+  "echo c"
+)
+
+# Endpoint
+URL="http://localhost:8080/run-process?cmd="
+
+# Timestamps
+timestamp() {
+  date +"%H:%M:%S"
+}
+
+echo " STARTING TEST "
+
+for CMD in "${COMMANDS[@]}"; do
+  (
+    echo "[$(timestamp)] Sending command: '$CMD'"
+    RESPONSE=$(curl -s "${URL}$(echo $CMD | sed 's/ /+/g')")
+    echo "[$(timestamp)] RESPONSE for '$CMD':"
+    echo "$RESPONSE"
+    echo "---
