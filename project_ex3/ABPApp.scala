@@ -2,8 +2,8 @@ package project_ex3
 
 import akka.actor._
 import scala.util.Random
-import scala.concurrent.duration._
 import akka.event.Logging
+import scala.collection.mutable.Queue
 
 case class Message(bit: Int, content: String)
 case class Ack(bit: Int)
@@ -27,7 +27,10 @@ class Trans(receiver: ActorRef, sender: ActorRef, correct: Boolean, failiure: Bo
         if (Random.nextBoolean()) {
           log.info(s"[Trans] Enviando: ${msg.content} (bit=${msg.bit})")
           receiver ! msg
-          while (Random.nextBoolean()) receiver ! msg // duplicação de menssagem
+          while (Random.nextBoolean()) { // duplicação de menssagem
+            log.info(s"[Trans] Duplicacao de mensagem: ${msg.content} (bit=${msg.bit})")
+            receiver ! msg
+          }
         } else {
           log.info(s"[Trans] PERDEU mensagem: ${msg.content}")
           sender ! TriggerNext // sender tem que enviar de novo
@@ -53,7 +56,10 @@ class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failiur
         if (Random.nextBoolean()) {
           log.info(s"[AckChannel] Enviando Ack(${ack.bit})")
           sender ! ack
-          while (Random.nextBoolean()) sender ! ack // duplicação de ack
+          while (Random.nextBoolean()){ // duplicação de ack
+            log.info(s"[AckChannel] Duplicacao de Ack(${ack.bit})")
+            sender ! ack
+          }
         } else {
           log.info(s"[AckChannel] PERDEU Ack(${ack.bit})")
           receiver ! ack
@@ -74,10 +80,11 @@ class Receiver(getSender: () => ActorRef, correct: Boolean, failiure: Boolean) e
       if (bit == expectedBit) {
         log.info(s"[Receiver] Entregou: '$content' com bit $bit")
         expectedBit = 1 - expectedBit
+        ackChannel ! Ack(bit) // assim esta bem
       } else {
         log.info(s"[Receiver] Ignorou duplicado com bit $bit")
       }
-      ackChannel ! Ack(bit)
+      //ackChannel ! Ack(bit) // TODO: acho que isto n pode ficar aqui.....se ignore manda na mesma..... DONE
     case Ack(bit) =>
       log.info(s"[Receiver] Reenvia ack: com bit $bit")
       ackChannel ! Ack(bit)
@@ -85,11 +92,11 @@ class Receiver(getSender: () => ActorRef, correct: Boolean, failiure: Boolean) e
 }
 
 //  Sender
-class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
+class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var messages: Queue[String]) extends Actor {
   val log = Logging (context.system, this)
   val trans = context.actorOf(Props(new Trans(receiver, this.self, correct, failiure)), "trans")
   var bit = 0
-  var messages = List("msg1", "msg2", "msg3")
+  //var messages = List("msg1", "msg2", "msg3")
 
   def receive: Receive = {
     case Start =>
@@ -110,7 +117,7 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean) extends Ac
         bit = 1 - bit
         messages = messages.tail
         if (messages.isEmpty) context.system.terminate()
-        self ! TriggerNext
+        else self ! TriggerNext
       } else {
         log.info(s"[Sender] Ignorou Ack errado: $receivedBit")
       }
@@ -121,14 +128,15 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean) extends Ac
 object ABPApp extends App {
   lazy val system = ActorSystem("ABPSystem")
 
-  val correct = true // true para tudo certo
+  val correct = false // true para tudo certo, ex2 pede isso
   val failiure= false // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
+  val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
 
   var senders: ActorRef = null
 
   val receiver = system.actorOf(Props(new Receiver(() => senders, correct, failiure)), "receiver")
 
-  senders = system.actorOf(Props(new Sender(receiver, correct, failiure)), "sender")
+  senders = system.actorOf(Props(new Sender(receiver, correct, failiure, messages)), "sender")
 
   senders ! Start
 
