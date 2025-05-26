@@ -17,4 +17,9 @@ libraryDependencies ++= Seq(
   "commons-io" % "commons-io" % "2.4"
   ,"com.typesafe.akka" %% "akka-actor" % "2.8.5"
   ,"com.typesafe.akka" %% "akka-remote" % "2.8.5"
+<<<<<<< HEAD
 )
+=======
+)
+
+>>>>>>> b83c750745f5da6f210785a02b25064ec30cd2fb
