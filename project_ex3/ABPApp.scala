@@ -4,6 +4,10 @@ import akka.actor._
 import scala.util.Random
 import akka.event.Logging
 import scala.collection.mutable.Queue
+import scala.concurrent.duration._
+
+
+
 
 case class Message(bit: Int, content: String)
 case class Ack(bit: Int)
@@ -11,14 +15,19 @@ case object Start
 case object TriggerNext
 
 //  Trans
-class Trans(receiver: ActorRef, sender: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
+class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging(context.system, this)
+  import context.dispatcher          // estesimport está aqui porque ele só existe dentro do actor
 
   def receive: Receive = {
     case msg: Message =>
       if (failiure) {
         log.info(s"[Trans] FALHA TOTAL: perdeu '${msg.content}' (bit=${msg.bit})")
-        // Nada é enviado, nem ao receiver nem ao sender
+        context.system.scheduler.scheduleOnce(
+          500.millis,
+          senderRef,
+          TriggerNext
+        )
       } else if (correct) {
         log.info(s"[Trans] Enviando: ${msg.content} (bit=${msg.bit})")
         receiver ! msg
@@ -32,11 +41,14 @@ class Trans(receiver: ActorRef, sender: ActorRef, correct: Boolean, failiure: Bo
           }
         } else {
           log.info(s"[Trans] PERDEU mensagem: ${msg.content}")
-          sender ! TriggerNext
+          senderRef ! TriggerNext
         }
       }
   }
 }
+
+
+
 
 
 //  AckChannel
@@ -127,8 +139,8 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
 object ABPApp extends App {
   lazy val system = ActorSystem("ABPSystem")
 
-  val correct = false // true para tudo certo, ex2 pede isso
-  val failiure= true // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
+  val correct = true // true para tudo certo, ex2 pede isso
+  val failiure= false // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
   val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
 
   var senders: ActorRef = null
@@ -138,6 +150,8 @@ object ABPApp extends App {
   senders = system.actorOf(Props(new Sender(receiver, correct, failiure, messages)), "sender")
 
   senders ! Start
+
+  Thread.sleep(3000)
 
 }
 
