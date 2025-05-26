@@ -1,6 +1,6 @@
 package cp.serverPr
 
-// TODO: fazer versao com atomic counter sem sync block ou com e mais sofisticado 
+// TODO: fazer versao com atomic counter sem sync block ou com e mais sofisticado
 import java.util.concurrent.atomic.AtomicInteger
 import scala.sys.process._
 
@@ -36,13 +36,23 @@ class ServerState(maxConcurrent: Int) {
       }
     }
 
-    lastCommand = cmd
     val id = nextId()
-
+    println(s"START $cmd")
     try {
       val output = new StringBuilder
       val logger = ProcessLogger(line => { output.append(line + "\n"); () })
-      Seq("sh", "-c", cmd).!(logger)
+
+      val isWindows = System.getProperty("os.name").toLowerCase.contains("win")
+      val shellCommand =
+        if (isWindows) {
+          // using WSL if available
+          Seq("wsl", "-e", "bash", "-c", cmd)
+        } else {
+          // normal Linux
+          Seq("sh", "-c", cmd)
+        }
+      shellCommand.!(logger)
+
       completed.incrementAndGet()
       s"[$id] Result from running '$cmd' for user $userIp:\n${output.toString}"
     } catch {
@@ -54,10 +64,9 @@ class ServerState(maxConcurrent: Int) {
 
   def toHtml: String =
     s"""
-      |<p><strong>counter:</strong> $counter</p>
-      |<p><strong>queued: </strong> ${queued.get()}</p>
-      |<p><strong>completed: </strong> ${completed.get()}</p>
-      |<p><strong>running:</strong> ${concurrent.get()}</p>
-      |<p><strong>lastCommand:</strong> $lastCommand</p>
-      |""".stripMargin
+       |<p><strong>counter:</strong> $counter</p>
+       |<p><strong>queued: </strong> ${queued.get()}</p>
+       |<p><strong>completed: </strong> ${completed.get()}</p>
+       |<p><strong>running:</strong> ${concurrent.get()}</p>
+       |""".stripMargin
 }
