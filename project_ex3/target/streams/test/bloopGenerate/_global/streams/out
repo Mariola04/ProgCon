@@ -1,0 +1,4 @@
+[debug] [project_ex3-test] Classpath dependencies List()
+[debug] [project_ex3-test] Dependencies from configurations List(project_ex3)
+[debug] Bloop wrote the configuration of project 'project_ex3-test' to '/home/mario/Desktop/ProgCon/project_ex3/.bloop/project_ex3-test.json'
+[success] Generated .bloop/project_ex3-test.json

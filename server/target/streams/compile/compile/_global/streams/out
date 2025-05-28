@@ -1,10 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/Routes.scala:8:27: not found: type ServerState[0m
-[0m[[0m[31merror[0m] [0m[0m  private val state = new ServerState()[0m
-[0m[[0m[31merror[0m] [0m[0m                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/Routes.scala:8:15: private val state in object Routes is never used[0m
-[0m[[0m[31merror[0m] [0m[0m  private val state = new ServerState()[0m
-[0m[[0m[31merror[0m] [0m[0m              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/Routes.scala:19:13: local val userIp in method applyOrElse is never used[0m
-[0m[[0m[31merror[0m] [0m[0m        val userIp = req.remoteAddr.map(_.toString).getOrElse("unknown")[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala:6:34: Unused import[0m
+[0m[[0m[31merror[0m] [0m[0mimport scala.concurrent.duration._[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

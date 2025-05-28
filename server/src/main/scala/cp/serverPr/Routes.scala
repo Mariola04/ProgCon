@@ -1,14 +1,8 @@
-
 package cp.serverPr
 
 import cats.effect.IO
 import org.http4s._
 import org.http4s.dsl.io._
-
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
-import scala.concurrent.ExecutionContext.Implicits.global
-
 
 object Routes {
   private val state = new ServerState(maxConcurrent = 3)
@@ -23,18 +17,13 @@ object Routes {
 
       case req @ GET -> Root / "run-process" =>
         val cmdOpt = req.uri.query.params.get("cmd")
-        val userIp = req.remoteAddr match {
-          case Some(ip) => ip.toString
-          case None     => "unknown"
-        }
+        val userIp = req.remoteAddr.map(_.toString).getOrElse("unknown")
 
         cmdOpt match {
           case Some(cmd) =>
-            val resultFuture = Future {
-              state.runProcess(cmd, userIp)
-            }
-            val result = Await.result(resultFuture, 15.seconds) // ver se tiro ou não (É necessário loops?)
-            Ok(result).map(addCORSHeaders)
+            val futureResult = state.submitCommand(cmd, userIp)
+            val ioResult = IO.fromFuture(IO(futureResult))
+            ioResult.flatMap(res => Ok(res).map(addCORSHeaders))
 
           case None =>
             BadRequest("Command not provided. Use /run-process?cmd=<your_command>")

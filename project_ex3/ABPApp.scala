@@ -17,7 +17,7 @@ case object TriggerNext
 //  Trans
 class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging(context.system, this)
-  import context.dispatcher          // estesimport está aqui porque ele só existe dentro do actor
+  import context.dispatcher          // este import está aqui porque ele só existe dentro do actor
 
   def receive: Receive = {
     case msg: Message =>
@@ -91,7 +91,7 @@ class Receiver(getSender: () => ActorRef, correct: Boolean, failiure: Boolean) e
       if (bit == expectedBit) {
         log.info(s"[Receiver] Entregou: '$content' com bit $bit")
         expectedBit = 1 - expectedBit
-        ackChannel ! Ack(bit) // assim esta bem
+        ackChannel ! Ack(bit)
       } else {
         log.info(s"[Receiver] Ignorou duplicado com bit $bit")
       }
@@ -120,18 +120,23 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
         trans ! Message(bit, msg)
       }
 
-    case Ack(receivedBit) => // TODO: melhorar a terminação, acho que n está muioto bem.....
-      if (messages.isEmpty) context.system.terminate()
-
+    case Ack(receivedBit) =>
       if (receivedBit == bit) {
         log.info(s"[Sender] Recebeu Ack correto: $receivedBit")
         bit = 1 - bit
+      if (messages.nonEmpty) {
         messages = messages.tail
-        if (messages.isEmpty) context.system.terminate()
-        else self ! TriggerNext
-      } else {
-        log.info(s"[Sender] Ignorou Ack errado: $receivedBit")
       }
+
+      if (messages.isEmpty) {
+        log.info("[Sender] Todas as mensagens enviadas com sucesso. A terminar o sistema.")
+        context.system.terminate()
+      } else {
+        self ! TriggerNext
+      }
+    } else {
+      log.info(s"[Sender] Ignorou Ack errado: $receivedBit (esperava $bit)")
+    }
   }
 }
 
@@ -139,8 +144,8 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
 object ABPApp extends App {
   lazy val system = ActorSystem("ABPSystem")
 
-  val correct = true // true para tudo certo, ex2 pede isso
-  val failiure= false // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
+  val correct = false
+  val failiure= false 
   val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
 
   var senders: ActorRef = null
@@ -151,7 +156,7 @@ object ABPApp extends App {
 
   senders ! Start
 
-  Thread.sleep(3000)
+  Thread.sleep(5000)
 
 }
 

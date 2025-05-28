@@ -1,0 +1,403 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "project_ex3-test",
+        "directory": "/home/mario/Desktop/ProgCon/project_ex3",
+        "workspaceDir": "/home/mario/Desktop/ProgCon/project_ex3",
+        "sources": [
+            "/home/mario/Desktop/ProgCon/project_ex3/src/test/scala",
+            "/home/mario/Desktop/ProgCon/project_ex3/src/test/scala-2.12",
+            "/home/mario/Desktop/ProgCon/project_ex3/src/test/scala-2",
+            "/home/mario/Desktop/ProgCon/project_ex3/src/test/java",
+            "/home/mario/Desktop/ProgCon/project_ex3/target/scala-2.12/src_managed/test",
+            "/home/mario/Desktop/ProgCon/project_ex3/ABPApp.scala"
+        ],
+        "dependencies": [
+            "project_ex3"
+        ],
+        "classpath": [
+            "/home/mario/Desktop/ProgCon/project_ex3/.bloop/project_ex3/scala-2.12/classes",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.12/2.8.5/akka-actor_2.12-2.8.5.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.12/2.8.5/akka-remote_2.12-2.8.5.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.8.5/akka-stream_2.12-2.8.5.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-pki_2.12/2.8.5/akka-pki_2.12-2.8.5.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/agrona/agrona/1.17.1/agrona-1.17.1.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-protobuf-v3_2.12/2.8.5/akka-protobuf-v3_2.12-2.8.5.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.6.1/ssl-config-core_2.12-0.6.1.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/hierynomus/asn-one/0.6.0/asn-one-0.6.0.jar",
+            "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar"
+        ],
+        "out": "/home/mario/Desktop/ProgCon/project_ex3/.bloop/project_ex3",
+        "classesDir": "/home/mario/Desktop/ProgCon/project_ex3/.bloop/project_ex3/scala-2.12/test-classes",
+        "resources": [
+            "/home/mario/Desktop/ProgCon/project_ex3/src/test/resources",
+            "/home/mario/Desktop/ProgCon/project_ex3/target/scala-2.12/resource_managed/test"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.12.18",
+            "options": [
+                
+            ],
+            "jars": [
+                "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18.jar",
+                "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.18/scala-compiler-2.12.18.jar",
+                "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.18/scala-reflect-2.12.18.jar",
+                "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/2.1.0/scala-xml_2.12-2.1.0.jar",
+                "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6.jar"
+            ],
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "zio.test.sbt.ZTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "weaver.framework.CatsEffect"
+                    ]
+                },
+                {
+                    "names": [
+                        "hedgehog.sbt.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/usr/lib/jvm/java-18-openjdk-amd64",
+                "options": [
+                    "-Duser.dir=/home/mario/Desktop/ProgCon/project_ex3"
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.18",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "commons-io",
+                    "name": "commons-io",
+                    "version": "2.4",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "commons-io",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.jar"
+                        },
+                        {
+                            "name": "commons-io",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe.akka",
+                    "name": "akka-actor_2.12",
+                    "version": "2.8.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "akka-actor_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.12/2.8.5/akka-actor_2.12-2.8.5.jar"
+                        },
+                        {
+                            "name": "akka-actor_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.12/2.8.5/akka-actor_2.12-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe.akka",
+                    "name": "akka-remote_2.12",
+                    "version": "2.8.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "akka-remote_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.12/2.8.5/akka-remote_2.12-2.8.5.jar"
+                        },
+                        {
+                            "name": "akka-remote_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.12/2.8.5/akka-remote_2.12-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe",
+                    "name": "config",
+                    "version": "1.4.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "config",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2.jar"
+                        },
+                        {
+                            "name": "config",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-java8-compat_2.12",
+                    "version": "0.8.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-java8-compat_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.jar"
+                        },
+                        {
+                            "name": "scala-java8-compat_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe.akka",
+                    "name": "akka-stream_2.12",
+                    "version": "2.8.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "akka-stream_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.8.5/akka-stream_2.12-2.8.5.jar"
+                        },
+                        {
+                            "name": "akka-stream_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.8.5/akka-stream_2.12-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe.akka",
+                    "name": "akka-pki_2.12",
+                    "version": "2.8.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "akka-pki_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-pki_2.12/2.8.5/akka-pki_2.12-2.8.5.jar"
+                        },
+                        {
+                            "name": "akka-pki_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-pki_2.12/2.8.5/akka-pki_2.12-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.agrona",
+                    "name": "agrona",
+                    "version": "1.17.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "agrona",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/agrona/agrona/1.17.1/agrona-1.17.1.jar"
+                        },
+                        {
+                            "name": "agrona",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/agrona/agrona/1.17.1/agrona-1.17.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe.akka",
+                    "name": "akka-protobuf-v3_2.12",
+                    "version": "2.8.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "akka-protobuf-v3_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-protobuf-v3_2.12/2.8.5/akka-protobuf-v3_2.12-2.8.5.jar"
+                        },
+                        {
+                            "name": "akka-protobuf-v3_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/akka/akka-protobuf-v3_2.12/2.8.5/akka-protobuf-v3_2.12-2.8.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.reactivestreams",
+                    "name": "reactive-streams",
+                    "version": "1.0.4",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "reactive-streams",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar"
+                        },
+                        {
+                            "name": "reactive-streams",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.typesafe",
+                    "name": "ssl-config-core_2.12",
+                    "version": "0.6.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "ssl-config-core_2.12",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.6.1/ssl-config-core_2.12-0.6.1.jar"
+                        },
+                        {
+                            "name": "ssl-config-core_2.12",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.6.1/ssl-config-core_2.12-0.6.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.hierynomus",
+                    "name": "asn-one",
+                    "version": "0.6.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "asn-one",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/hierynomus/asn-one/0.6.0/asn-one-0.6.0.jar"
+                        },
+                        {
+                            "name": "asn-one",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/com/hierynomus/asn-one/0.6.0/asn-one-0.6.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-api",
+                    "version": "1.7.36",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-api",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar"
+                        },
+                        {
+                            "name": "slf4j-api",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.18",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/mario/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "test"
+        ]
+    }
+}

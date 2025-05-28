@@ -1,72 +1,103 @@
 package cp.serverPr
 
-// TODO: fazer versao com atomic counter sem sync block ou com e mais sofisticado
-import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.Semaphore
+import scala.collection.mutable
+import scala.concurrent.{Future, Promise}
 import scala.sys.process._
+import scala.util.Try
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.blocking
+
+case class CommandRequest(id: Int, cmd: String, userIp: String, promise: Promise[String])
 
 class ServerState(maxConcurrent: Int) {
-  // === Synchronized + volatile ===
   @volatile private var counter: Int = 0
-
-  // === Lock-free shared state ===
-  private val concurrent = new AtomicInteger(0)
-  private val queued = new AtomicInteger(0)
-  private val completed = new AtomicInteger(0)
-
-  // === Volatile variable ===
-  @volatile var lastCommand: String = ""
-
   private def nextId(): Int = this.synchronized {
     counter += 1
     counter
   }
 
+  private val sem = new Semaphore(maxConcurrent)
+  private val queue = new mutable.Queue[CommandRequest]()
+  private val resultQueue = new mutable.Queue[CommandRequest]()
 
-  def runProcess(cmd: String, userIp: String): String = {
-    // Try to acquire a slot without blocking (lock-free)
-    var acquired = false
-    while (!acquired) {
-      val current = concurrent.get()
-      if (current < maxConcurrent) {
-        acquired = concurrent.compareAndSet(current, current + 1)
-      } else {
-        queued.incrementAndGet()
-        Thread.sleep(10)
-        queued.decrementAndGet()
+  // Thread que executa comandos concorrentes
+  private val executorThread = new Thread(() => {
+    while (true) {
+      val requestOpt = this.synchronized {
+        if (queue.nonEmpty) Some(queue.dequeue()) else None
+      }
+
+      requestOpt.foreach { req =>
+        Future {
+          blocking { sem.acquire() }
+          val output = new StringBuilder
+          val logger = ProcessLogger(line => { output.append(line + "\n"); () })
+
+          val shellCommand =
+            if (System.getProperty("os.name").toLowerCase.contains("win")) {
+              Seq("wsl", "-e", "bash", "-c", req.cmd)
+            } else {
+              Seq("sh", "-c", req.cmd)
+            }
+
+          val result = Try {
+            shellCommand.!(logger)
+            s"[${req.id}] Result from running '${req.cmd}' for user ${req.userIp}:\n${output.toString}"
+          }.recover {
+            case e: Exception => s"[${req.id}] Error running '${req.cmd}': ${e.getMessage}"
+          }.get
+
+          req.promise.success(result)
+          sem.release()
+        }
+      }
+
+      if (requestOpt.isEmpty) blocking { Thread.sleep(5) }
+    }
+  })
+
+  executorThread.setDaemon(true)
+  executorThread.start()
+
+  def submitCommand(cmd: String, userIp: String): Future[String] = {
+    val promise = Promise[String]()
+    val id = nextId()
+    val req = CommandRequest(id, cmd, userIp, promise)
+
+    this.synchronized {
+      queue.enqueue(req)
+      resultQueue.enqueue(req)
+    }
+
+    // Polling sem blocking: espera até ser o topo e estar completo
+    def waitForTurn(): Future[String] = {
+      Future {
+        var done = false
+        var result = ""
+        while (!done) {
+          blocking {
+            this.synchronized {
+              if (resultQueue.headOption.contains(req) && promise.isCompleted) {
+                result = promise.future.value.get.get
+                resultQueue.dequeue()
+                done = true
+              }
+            }
+          }
+          if (!done) Thread.sleep(5) // pequeno delay para evitar busy loop (Solução 1)
+        }
+        result
       }
     }
 
-    val id = nextId()
-    println(s"START $cmd")
-    try {
-      val output = new StringBuilder
-      val logger = ProcessLogger(line => { output.append(line + "\n"); () })
-
-      val isWindows = System.getProperty("os.name").toLowerCase.contains("win")
-      val shellCommand =
-        if (isWindows) {
-          // using WSL if available
-          Seq("wsl", "-e", "bash", "-c", cmd)
-        } else {
-          // normal Linux
-          Seq("sh", "-c", cmd)
-        }
-      shellCommand.!(logger)
-
-      completed.incrementAndGet()
-      s"[$id] Result from running '$cmd' for user $userIp:\n${output.toString}"
-    } catch {
-      case e: Exception => s"[$id] Error running '$cmd': ${e.getMessage}"
-    } finally {
-      concurrent.decrementAndGet(); ()
-    }
+    waitForTurn()
   }
 
-  def toHtml: String =
-    s"""
+  def toHtml: String = s"""
        |<p><strong>counter:</strong> $counter</p>
-       |<p><strong>queued: </strong> ${queued.get()}</p>
-       |<p><strong>completed: </strong> ${completed.get()}</p>
-       |<p><strong>running:</strong> ${concurrent.get()}</p>
+       |<p><strong>queued:</strong> ${queue.size}</p>
+       |<p><strong>waiting:</strong> ${resultQueue.size}</p>
+       |<p><strong>running:</strong> ${maxConcurrent - sem.availablePermits()}</p>
        |""".stripMargin
 }
