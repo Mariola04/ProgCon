@@ -47,10 +47,6 @@ class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failiure:
   }
 }
 
-
-
-
-
 //  AckChannel
 class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging(context.system, this)
@@ -91,11 +87,10 @@ class Receiver(getSender: () => ActorRef, correct: Boolean, failiure: Boolean) e
       if (bit == expectedBit) {
         log.info(s"[Receiver] Entregou: '$content' com bit $bit")
         expectedBit = 1 - expectedBit
-        ackChannel ! Ack(bit) // assim esta bem
+        ackChannel ! Ack(bit)
       } else {
         log.info(s"[Receiver] Ignorou duplicado com bit $bit")
       }
-      //ackChannel ! Ack(bit) // TODO: acho que isto n pode ficar aqui.....se ignore manda na mesma..... DONE
     case Ack(bit) =>
       log.info(s"[Receiver] Reenvia ack: com bit $bit")
       ackChannel ! Ack(bit)
@@ -107,7 +102,6 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
   val log = Logging (context.system, this)
   val trans = context.actorOf(Props(new Trans(receiver, this.self, correct, failiure)), "trans")
   var bit = 0
-  //var messages = List("msg1", "msg2", "msg3")
 
   def receive: Receive = {
     case Start =>
@@ -120,9 +114,7 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
         trans ! Message(bit, msg)
       }
 
-    case Ack(receivedBit) => // TODO: melhorar a terminação, acho que n está muioto bem.....
-      if (messages.isEmpty) context.system.terminate()
-
+    case Ack(receivedBit) =>
       if (receivedBit == bit) {
         log.info(s"[Sender] Recebeu Ack correto: $receivedBit")
         bit = 1 - bit
@@ -130,7 +122,7 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
         if (messages.isEmpty) context.system.terminate()
         else self ! TriggerNext
       } else {
-        log.info(s"[Sender] Ignorou Ack errado: $receivedBit")
+        log.info(s"[Sender] Ignorou Ack: $receivedBit")
       }
   }
 }
@@ -139,8 +131,9 @@ class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var message
 object ABPApp extends App {
   lazy val system = ActorSystem("ABPSystem")
 
-  val correct = true // true para tudo certo, ex2 pede isso
-  val failiure= false // TODO: o failiure de momemnto n faz nada ,logo tem que estar a falso
+  val correct = false // true e baixo false para tudo certo, ex2 pede isso
+  val failiure= false // true e acima false para ver sempre falhar
+  // ambos false para ser random
   val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
 
   var senders: ActorRef = null
