@@ -14,7 +14,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "commons-io" % "commons-io" % "2.4"
-  ,"com.typesafe.akka" %% "akka-actor" % "2.8.5"
-  ,"com.typesafe.akka" %% "akka-remote" % "2.8.5"
+  "commons-io" % "commons-io" % "2.4",
+  "com.typesafe.akka" %% "akka-actor" % "2.8.5",
+  "com.typesafe.akka" %% "akka-remote" % "2.8.5"
 )

@@ -43,10 +43,14 @@ class ServerState(maxConcurrent: Int) {
 
           val result = Try {
             shellCommand.!(logger)
-            s"[${req.id}] Result from running '${req.cmd}' for user ${req.userIp}:\n${output.toString}"
-          }.recover {
-            case e: Exception => s"[${req.id}] Error running '${req.cmd}': ${e.getMessage}"
-          }.get
+            val timestamp = java.time.LocalDateTime.now()
+            s"[${req.id}] Result from running '${req.cmd}' for user ${req.userIp}:\n${output.toString}\nFinished at: $timestamp"
+            }.recover {
+              case e: Exception =>
+                val timestamp = java.time.LocalDateTime.now()
+                s"[${req.id}] Error running '${req.cmd}': ${e.getMessage}\nFinished at: $timestamp"
+            }.get
+
 
           req.promise.success(result)
           sem.release()
