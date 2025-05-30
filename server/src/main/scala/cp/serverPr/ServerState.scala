@@ -21,7 +21,7 @@ class ServerState(maxConcurrent: Int) {
   private val queue = new mutable.Queue[CommandRequest]()
   private val resultQueue = new mutable.Queue[CommandRequest]()
 
-  // Thread que executa comandos concorrentes
+  // Thread that executes concurrent commands
   private val executorThread = new Thread(() => {
     while (true) {
       val requestOpt = this.synchronized {
@@ -29,6 +29,7 @@ class ServerState(maxConcurrent: Int) {
       }
 
       requestOpt.foreach { req =>
+        println(s"[${req.id}] Executing command: ${req.cmd}") // print for bad server
         Future {
           blocking { sem.acquire() }
           val output = new StringBuilder
@@ -51,7 +52,7 @@ class ServerState(maxConcurrent: Int) {
                 s"[${req.id}] Error running '${req.cmd}': ${e.getMessage}\nFinished at: $timestamp"
             }.get
 
-
+          println(s"[${req.id}] Completed command, result ready.") // print for bad server
           req.promise.success(result)
           sem.release()
         }
@@ -69,12 +70,14 @@ class ServerState(maxConcurrent: Int) {
     val id = nextId()
     val req = CommandRequest(id, cmd, userIp, promise)
 
-    this.synchronized {
+    this.synchronized { // comment this line for bad server
       queue.enqueue(req)
       resultQueue.enqueue(req)
-    }
+    } // comment this line for bad server
+    println(s"[$id] Submitting command '$cmd' from $userIp") // print for bad server
 
-    // Polling sem blocking: espera até ser o topo e estar completo
+
+    // Polling without blocking: wiats til being head and completes
     def waitForTurn(): Future[String] = {
       Future {
         var done = false
@@ -82,6 +85,7 @@ class ServerState(maxConcurrent: Int) {
         while (!done) {
           blocking {
             this.synchronized {
+              println(s"head ${resultQueue.headOption} res: $req") // print for bad server
               if (resultQueue.headOption.contains(req) && promise.isCompleted) {
                 result = promise.future.value.get.get
                 resultQueue.dequeue()
@@ -89,7 +93,7 @@ class ServerState(maxConcurrent: Int) {
               }
             }
           }
-          if (!done) Thread.sleep(5) // pequeno delay para evitar busy loop (Solução 1)
+          if (!done) Thread.sleep(5) // small delay to avoid busy loop
         }
         result
       }

@@ -17,7 +17,7 @@ case object TriggerNext
 //  Trans
 class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failure: Boolean) extends Actor {
   val log = Logging(context.system, this)
-  import context.dispatcher          // este import está aqui porque ele só existe dentro do actor
+  import context.dispatcher          //this import is here because it only exists once an actor is created
 
   def receive: Receive = {
     case msg: Message =>
@@ -59,7 +59,7 @@ class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failure
     case ack: Ack =>
       if (failure) {
         log.info(s"[AckChannel] FALHA TOTAL: perdeu Ack(${ack.bit})")
-        // Nada é enviado, nem ao sender nem ao receiver
+        //Nothing is sent, neither to sender nor receiver
       } else if (correct) {
         log.info(s"[AckChannel] Enviando Ack(${ack.bit})")
         sender ! ack
@@ -95,7 +95,7 @@ class Receiver(getSender: () => ActorRef, correct: Boolean, failure: Boolean) ex
       } else {
         log.info(s"[Receiver] Ignorou duplicado com bit $bit")
       }
-      //ackChannel ! Ack(bit) // TODO: acho que isto n pode ficar aqui.....se ignore manda na mesma..... DONE
+      
     case Ack(bit) =>
       log.info(s"[Receiver] Reenvia ack: com bit $bit")
       ackChannel ! Ack(bit)
@@ -107,7 +107,7 @@ class Sender(receiver: ActorRef, correct: Boolean, failure: Boolean,var messages
   val log = Logging (context.system, this)
   val trans = context.actorOf(Props(new Trans(receiver, this.self, correct, failure)), "trans")
   var bit = 0
-  //var messages = List("msg1", "msg2", "msg3")
+  
 
   def receive: Receive = {
     case Start =>
@@ -146,7 +146,7 @@ object ABPApp extends App {
 
   val correct = false
   val failure= true
-  val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
+  val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue with example messages
 
   var senders: ActorRef = null
 
