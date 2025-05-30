@@ -10213,3 +10213,24 @@ WARNING: Unmatched cancel notification for request id 7
 2025.05.30 09:22:57 INFO  time: code lens generation in 1.32s
 2025.05.30 09:22:57 INFO  time: code lens generation in 1.74s
 2025.05.30 09:22:57 INFO  time: code lens generation in 1.74s
+2025.05.30 23:38:22 INFO  Started: Metals version 1.5.3 in folders '/home/mario/Desktop/ProgCon' for client Visual Studio Code 1.100.2.[0m
+2025.05.30 23:38:23 INFO  no build target found for /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala. Using presentation compiler with project's scala-library version: 3.3.6[0m
+2025.05.30 23:38:24 INFO  Attempting to connect to the build server...[0m
+2025.05.30 23:38:24 INFO  Found a Bloop server running[0m
+2025.05.30 23:38:24 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/mario/Desktop/ProgCon/.metals/bsp.trace.json or /home/mario/.cache/metals/bsp.trace.json[0m
+2025.05.30 23:38:24 INFO  time: Connected to build server in 0.3s[0m
+2025.05.30 23:38:24 INFO  Connected to Build server: Bloop v2.0.10[0m
+2025.05.30 23:38:26 INFO  no build target found for /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala. Using presentation compiler with project's scala-library version: 2.12.18[0m
+2025.05.30 23:38:26 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-18-openjdk-amd64/src.zip, /usr/lib/jvm/java-18-openjdk-amd64/lib/src.zip. Java symbols will not be available.[0m
+2025.05.30 23:38:26 INFO  time: indexed workspace in 1.73s[0m
+2025.05.30 23:38:26 INFO  no build target found for /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala. Using presentation compiler with project's scala-library version: 2.12.18[0m
+2025.05.30 23:38:26 WARN  no build target for: /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala[0m
+2025.05.30 23:38:26 INFO  no build target found for /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala. Using presentation compiler with project's scala-library version: 2.12.18[0m
+May 30, 2025 11:38:26 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 7
+May 30, 2025 11:38:26 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+2025.05.30 23:38:26 INFO  no build target found for /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala. Using presentation compiler with project's scala-library version: 2.12.18[0m
+2025.05.30 23:38:26 WARN  no build target for: /home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala[0m
+2025.05.30 23:38:28 INFO  time: code lens generation in 1.86s[0m
+2025.05.30 23:38:28 INFO  time: code lens generation in 1.74s[0m

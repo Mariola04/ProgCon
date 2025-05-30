@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/ServerState.scala:10:23: parameter value maxConcurrent in class ServerStateRace is never used[0m
-[0m[[0m[31merror[0m] [0m[0mclass ServerStateRace(maxConcurrent: Int) {[0m
-[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/mario/Desktop/ProgCon/server/src/main/scala/cp/serverPr/Routes.scala:24:38: value submitCommand is not a member of cp.serverPr.ServerState[0m
+[0m[[0m[31merror[0m] [0m[0m            val futureResult = state.submitCommand(cmd, userIp)[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
