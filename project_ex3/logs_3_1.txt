@@ -1,0 +1,19 @@
+[info] running project_ex3.ABPApp 
+[INFO] [05/30/2025 18:37:32.513] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 18:37:32.515] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] Enviando: msg1 (bit=0)
+[INFO] [05/30/2025 18:37:32.515] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Entregou: 'msg1' com bit 0
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Enviando Ack(0)
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/sender] [Sender] Recebeu Ack correto: 0
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg2' com bit 1
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] Enviando: msg2 (bit=1)
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/receiver] [Receiver] Entregou: 'msg2' com bit 1
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Enviando Ack(1)
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Recebeu Ack correto: 1
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg3' com bit 0
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/sender/trans] [Trans] Enviando: msg3 (bit=0)
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Entregou: 'msg3' com bit 0
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-4] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Enviando Ack(0)
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Recebeu Ack correto: 0
+[INFO] [05/30/2025 18:37:32.516] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Todas as mensagens enviadas com sucesso. A terminar o sistema.
+[INFO] [05/30/2025 18:37:32.532] [ABPSystem-akka.actor.default-dispatcher-6] [CoordinatedShutdown(akka://ABPSystem)] Running CoordinatedShutdown with reason [ActorSystemTerminateReason]
+[success] Total time: 8 s, completed May 30, 2025, 6:37:37 PM

@@ -1,3 +1,14 @@
+error id: file://<WORKSPACE>/project_ex3/ABPApp.scala:
+file://<WORKSPACE>/project_ex3/ABPApp.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 4327
+uri: file://<WORKSPACE>/project_ex3/ABPApp.scala
+text:
+```scala
 package project_ex3
 
 import akka.actor._
@@ -15,13 +26,13 @@ case object Start
 case object TriggerNext
 
 //  Trans
-class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failure: Boolean) extends Actor {
+class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging(context.system, this)
   import context.dispatcher          // este import está aqui porque ele só existe dentro do actor
 
   def receive: Receive = {
     case msg: Message =>
-      if (failure) {
+      if (failiure) {
         log.info(s"[Trans] FALHA TOTAL: perdeu '${msg.content}' (bit=${msg.bit})")
         context.system.scheduler.scheduleOnce(
           500.millis,
@@ -52,12 +63,12 @@ class Trans(receiver: ActorRef, senderRef: ActorRef, correct: Boolean, failure: 
 
 
 //  AckChannel
-class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failure: Boolean) extends Actor {
+class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging(context.system, this)
 
   def receive: Receive = {
     case ack: Ack =>
-      if (failure) {
+      if (failiure) {
         log.info(s"[AckChannel] FALHA TOTAL: perdeu Ack(${ack.bit})")
         // Nada é enviado, nem ao sender nem ao receiver
       } else if (correct) {
@@ -81,9 +92,9 @@ class AckChannel(sender: ActorRef, receiver: ActorRef, correct: Boolean, failure
 
 
 //  Receiver
-class Receiver(getSender: () => ActorRef, correct: Boolean, failure: Boolean) extends Actor {
+class Receiver(getSender: () => ActorRef, correct: Boolean, failiure: Boolean) extends Actor {
   val log = Logging (context.system, this)
-  val ackChannel = context.actorOf(Props(new AckChannel(getSender(), this.self, correct, failure)), "ack-channel")
+  val ackChannel = context.actorOf(Props(new AckChannel(getSender(), this.self, correct, failiure)), "ack-channel")
   var expectedBit = 0
 
   def receive: Receive = {
@@ -103,9 +114,9 @@ class Receiver(getSender: () => ActorRef, correct: Boolean, failure: Boolean) ex
 }
 
 //  Sender
-class Sender(receiver: ActorRef, correct: Boolean, failure: Boolean,var messages: Queue[String]) extends Actor {
+class Sender(receiver: ActorRef, correct: Boolean, failiure: Boolean,var messages: Queue[String]) extends Actor {
   val log = Logging (context.system, this)
-  val trans = context.actorOf(Props(new Trans(receiver, this.self, correct, failure)), "trans")
+  val trans = context.actorOf(Props(new Trans(receiver, this.self, correct, failiure)), "trans")
   var bit = 0
   //var messages = List("msg1", "msg2", "msg3")
 
@@ -144,15 +155,15 @@ class Sender(receiver: ActorRef, correct: Boolean, failure: Boolean,var messages
 object ABPApp extends App {
   lazy val system = ActorSystem("ABPSystem")
 
-  val correct = false
-  val failure= true
+  val correct = fals@@e
+  val failiure= false 
   val messages: Queue[String] = Queue("msg1", "msg2", "msg3") // queue com as menssagens
 
   var senders: ActorRef = null
 
-  val receiver = system.actorOf(Props(new Receiver(() => senders, correct, failure)), "receiver")
+  val receiver = system.actorOf(Props(new Receiver(() => senders, correct, failiure)), "receiver")
 
-  senders = system.actorOf(Props(new Sender(receiver, correct, failure, messages)), "sender")
+  senders = system.actorOf(Props(new Sender(receiver, correct, failiure, messages)), "sender")
 
   senders ! Start
 
@@ -166,6 +177,12 @@ A hieraquia que existe:
          "ABPSystem"
         /           \
     "Sender"      "Receiver"
-        |              |
+
     "Trans"        "Ack_channel"
 */
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

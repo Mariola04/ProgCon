@@ -1,0 +1,22 @@
+[info] running project_ex3.ABPApp 
+[INFO] [05/30/2025 19:39:57.914] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:39:57.915] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:39:58.429] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:39:58.430] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:39:58.948] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:39:58.949] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:39:59.468] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:39:59.469] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:39:59.988] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:39:59.988] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:40:00.508] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:40:00.508] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:40:01.028] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:40:01.029] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:40:01.548] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:40:01.548] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:40:02.068] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:40:02.068] [ABPSystem-akka.actor.default-dispatcher-7] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[INFO] [05/30/2025 19:40:02.588] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:40:02.588] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] FALHA TOTAL: perdeu 'msg1' (bit=0)
+[success] Total time: 9 s, completed May 30, 2025, 7:40:02 PM

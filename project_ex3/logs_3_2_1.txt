@@ -1,0 +1,47 @@
+[info] running project_ex3.ABPApp 
+[INFO] [05/30/2025 19:22:29.910] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:22:29.911] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] PERDEU mensagem: msg1
+[INFO] [05/30/2025 19:22:29.911] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:22:29.911] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] PERDEU mensagem: msg1
+[INFO] [05/30/2025 19:22:29.911] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg1' com bit 0
+[INFO] [05/30/2025 19:22:29.911] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] Enviando: msg1 (bit=0)
+[INFO] [05/30/2025 19:22:29.911] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender/trans] [Trans] Duplicacao de mensagem: msg1 (bit=0)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver] [Receiver] Entregou: 'msg1' com bit 0
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver] [Receiver] Ignorou duplicado com bit 0
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Enviando Ack(0)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Recebeu Ack correto: 0
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg2' com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] Enviando: msg2 (bit=1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] Duplicacao de mensagem: msg2 (bit=1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] Duplicacao de mensagem: msg2 (bit=1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Entregou: 'msg2' com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Ignorou duplicado com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] PERDEU Ack(1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Ignorou duplicado com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Reenvia ack: com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] PERDEU Ack(1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Reenvia ack: com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] PERDEU Ack(1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Reenvia ack: com bit 1
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Enviando Ack(1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Duplicacao de Ack(1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Duplicacao de Ack(1)
+[INFO] [05/30/2025 19:22:29.912] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Recebeu Ack correto: 1
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Duplicacao de Ack(1)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Ignorou Ack errado: 1 (esperava 0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Ignorou Ack errado: 1 (esperava 0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] A enviar 'msg3' com bit 0
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/sender] [Sender] Ignorou Ack errado: 1 (esperava 0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender/trans] [Trans] Enviando: msg3 (bit=0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver] [Receiver] Entregou: 'msg3' com bit 0
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] PERDEU Ack(0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver] [Receiver] Reenvia ack: com bit 0
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] PERDEU Ack(0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/receiver] [Receiver] Reenvia ack: com bit 0
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Enviando Ack(0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] Recebeu Ack correto: 0
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-6] [akka://ABPSystem/user/receiver/ack-channel] [AckChannel] Duplicacao de Ack(0)
+[INFO] [05/30/2025 19:22:29.913] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] Todas as mensagens enviadas com sucesso. A terminar o sistema.
+[INFO] [05/30/2025 19:22:29.930] [ABPSystem-akka.actor.default-dispatcher-5] [CoordinatedShutdown(akka://ABPSystem)] Running CoordinatedShutdown with reason [ActorSystemTerminateReason]
+[INFO] [05/30/2025 19:22:29.933] [ABPSystem-akka.actor.default-dispatcher-5] [akka://ABPSystem/user/sender] [Sender] Ignorou Ack errado: 0 (esperava 1)
+[success] Total time: 9 s, completed May 30, 2025, 7:22:34 PM
